@@ -5,6 +5,7 @@ import rospy
 from std_msgs.msg import String
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
+from geometry_msgs.msg import Point, Pose
 # from tkinter import *
 # from tk import *
 import numpy as np
@@ -29,6 +30,9 @@ class BrickFinder(object):
                      "g": ((np.array([85, 128, 0]), np.array([100, 255, 255])),),
                      "b": ((np.array([101, 128, 0]), np.array([115, 255, 255])),),
                      "y": ((np.array([20, 128, 0]), np.array([35, 255, 255])),)}
+
+        self.mo = MorphOps
+        self.hc = HoughCircles
 
     def cam_cb(self, msg):
         try:
